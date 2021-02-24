@@ -43,6 +43,7 @@ $python3
 >>> import qjson2json
 >>> qjson2json.decode('a:b')
 '{"a":"b"}'
+```
 
 ## Reliability
 
