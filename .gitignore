@@ -1,0 +1,9 @@
+archive
+dist
+build
+qjson2json.egg-info
+env
+*.so
+__pycache__
+.pytest_cache
+.vscode
