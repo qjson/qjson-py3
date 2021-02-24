@@ -278,6 +278,7 @@ bool popNewline(engine_t *e) {
 	return true;
 }
 
+/*
 const byte s0 = 0x00; // invalid character (e.g. control characters)
 const byte s1 = 0x01; // valid characters (printable ascii characters)
 const byte s2 = 0x12; // rule 1, 2 byte long
@@ -287,6 +288,16 @@ const byte s5 = 0x33; // rule 3, 3 byqte long
 const byte s6 = 0x44; // rule 4, 4 byte long
 const byte s7 = 0x14; // rule 1, 4 byte long
 const byte s8 = 0x54; // rule 5, 4 byte long
+*/
+#define s0 ((byte)0x00)
+#define s1 ((byte)0x01)
+#define s2 ((byte)0x12)
+#define s3 ((byte)0x23)
+#define s4 ((byte)0x13)
+#define s5 ((byte)0x33)
+#define s6 ((byte)0x44)
+#define s7 ((byte)0x14)
+#define s8 ((byte)0x54)
 
 // All control characters except \t are invalid.
 // skipChar and readChar return false when the char is \n or \n.
@@ -310,8 +321,12 @@ const byte utf8Table[256] = {
 	s6, s7, s7, s7, s8, s0, s0, s0, s0, s0, s0, s0, s0, s0, s0, s0, // F0
 };
 
+/*
 const byte utf8lo = (byte)0x80;
 const byte utf8hi = (byte)0xBF;
+*/
+#define utf8lo ((byte)0x80)
+#define utf8hi ((byte)0xBF)
 
 const byte utf8Range[16] = {
 	0, 0,
@@ -1315,7 +1330,7 @@ int parseOctLiteral(slice_t v) {
 }
 
 // return the value which is in the range 0 to MAX_INT, or -1 if overflows.
-int decodeOctLiteral(slice_t v) {
+uint64_t decodeOctLiteral(slice_t v) {
 	uint64_t val = 0;
 	if ((v.p[1]&(byte)(0xDF)) == 'O') {
 		v.p += 2;

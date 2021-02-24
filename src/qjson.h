@@ -8,6 +8,7 @@ extern "C" {
 #ifdef _WIN32
 // See https://docs.microsoft.com/en-us/cpp/c-runtime-library/security-features-in-the-crt?view=msvc-160
 #define _CRT_SECURE_NO_WARNINGS
+#define timegm _mkgmtime
 #endif
 
 // qjson_decode accept a qjson text string as input and returns a 
